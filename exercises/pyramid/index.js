@@ -14,6 +14,24 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+const charGen = (char, num) => {
+	const str = []
+	for (let i = 0; i < num; i++) {
+		str.push(char);
+	}
+	return str.join('');
+}
+
+function pyramid(n) {
+	const logs = [];
+	for (let i = 1; i <= n; i++) {
+		const spaces = charGen(' ', n - i);
+		const hashes = charGen('#', 2 * i - 1);
+		
+		const line = spaces + hashes + spaces;
+		logs.push(line);
+	}
+	logs.forEach((line) => console.log(line));
+}
 
 module.exports = pyramid;
