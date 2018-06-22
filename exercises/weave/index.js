@@ -24,6 +24,27 @@
 
 const Queue = require('./queue');
 
-function weave(sourceOne, sourceTwo) {}
+function weave(sourceOne, sourceTwo) {
+	// 1. Create the new queue
+	const queue = new Queue();
+
+	// 2. loop while alternating which sourceQueue to look at
+	let sel = 1;
+
+	while (sel) {
+
+		// 3. if sourceQ has next record: add it to newQ
+
+		if (sel === 1 && sourceOne.peek()) {
+			queue.add(sourceOne.remove());
+			sel = 2;
+		} else if (sel === 2 && sourceTwo.peek()) {
+			queue.add(sourceTwo.remove());
+			sel = 1;
+		} else sel = false;
+	}
+
+	return queue;
+}
 
 module.exports = weave;
