@@ -15,6 +15,89 @@
 //     [11, 16, 15, 6],
 //     [10,  9,  8, 7]]
 
-function matrix(n) {}
+
+const create2dMatrix = (n) => {
+	const matrix = [];
+	for (let i = 0; i < n; i++) {
+		const row = [];
+		for (let j = 0; j < n; j++) {
+			row.push(-1);
+		}
+	matrix.push(row)
+	}
+	return matrix;
+};
+
+
+
+function matrix(n) {
+	const matrix = create2dMatrix(n);
+	
+	let left = 0;
+	let right = n - 1;
+	let top = 0;
+	let bottom = n - 1;
+
+	let num = 1;
+	let col = 0;
+	let row = 0;
+
+	while (num < n**2) {
+
+		for (col; col < right; col += 1) {
+			matrix[row][col] = num++;
+		}
+		top += 1;
+
+		for (row; row < bottom; row += 1) {
+			matrix[row][col] = num++;
+		}
+		bottom -= 1;
+
+		for (col; col > left; col -= 1) {
+			matrix[row][col] = num++;
+		}
+		left += 1;
+
+		for (row; row > top; row -= 1) {
+			matrix[row][col] = num++;
+		}
+		right -= 1;
+
+	}
+	matrix[row][col] = num;
+
+	return matrix;
+}
+
 
 module.exports = matrix;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
