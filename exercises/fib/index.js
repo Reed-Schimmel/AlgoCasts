@@ -20,18 +20,28 @@
 //	return sequence.pop();
 //}
 
-const fibs = {};
+const memoize = (fn) => {
+	const cache = {};
 
-function fib(n) {
+	return (...args) => {
+		if (cache[args]) return cache[args];
+	
+
+	const result = fn.apply(this, args);
+
+	cache[args] = result;
+	return result;
+
+	};
+};
+
+
+function slowFib(n) {
 	if (n < 2) return n;
 
-	if (fibs[n]) return fibs[n];
-
-	fibs[n - 1] = fib(n - 1);
-	fibs[n - 2] = fib(n - 2);
-
-	return fibs[n - 1] + fibs[n - 2];
+	return fib(n - 1) + fib(n - 2);
 }
 
+const fib = memoize(slowFib);
 
 module.exports = fib;
