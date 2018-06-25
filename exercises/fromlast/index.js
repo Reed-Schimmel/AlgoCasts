@@ -14,6 +14,7 @@
 function fromLast(list, n) {
 	let slow = list.getFirst();
 	let fast = slow;
+
 	for (let i = 1; i < n; i++) {
 		fast = fast.next;
 	}
@@ -22,6 +23,7 @@ function fromLast(list, n) {
 		slow = slow.next;
 		fast = fast.next;
 	}
+
 	return slow;
 
 }
